@@ -5,7 +5,7 @@ public class Test {
 
    static double box = 0.0;//1
 
-    static  int [] arr1= {0,0};
+
    //static  int[]arr2={0,0};//2// 반환형으로 수정, int temp 사용해서 스왑 main 에서 가져와서 출력 sprit
     //return 형 이 하나밖에 없어서 배열을 사용한다 
 
@@ -41,10 +41,11 @@ public class Test {
                 int num1, num2;
 
                 System.out.println("a 번째 수와 b 번째 수를 각각 입력해주새요!");
-                arr1[0] = sc.nextInt();
+                int []arr1 = {0,0};
+                 arr1[0]= sc.nextInt();
                 arr1[1] = sc.nextInt();
                 System.out.printf("변경 전 a  : %d ,  b   : %d\n", arr1[0], arr1[1]);
-                swap(arr1.length);
+                swap(arr1);// 반환형이 없지만 배열은 주소 복사이기에 주소값을 들고옴! 
                 System.out.printf("변경 후 a  : %d ,  b   : %d\n", arr1[0], arr1[1]);
 
                 continue;
@@ -99,11 +100,11 @@ public class Test {
          }
         return box;
         }
-    public static void  swap(int ... ßarr1){//2
-         int temp;
-                  temp =arr1[0];
-                   arr1[0]=arr1[1];
-                   arr1[1] = temp;
+    public static void  swap(int ... num1){//2 call by reference 주소값 복사
+         int temp=0;
+                  temp =num1[0];
+                   num1[0]=num1[1];
+                   num1[1] = temp;
 
 
 
