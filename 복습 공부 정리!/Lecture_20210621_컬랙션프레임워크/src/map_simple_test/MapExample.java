@@ -6,6 +6,19 @@ import java.util.*;
 public class MapExample {
     public static void main(String[] args) {
 
+        //why?
+        //쓰면 좋은점??
+         // 왜 이렇게 숫자를 안할까?
+        //ex)
+
+        //0 - apple
+        //1 -banana
+        //1 - bay
+        //2 -watermelon
+        //3 - pineapple
+
+        //key 설정하는 방법 :value를 대표해야함
+        //영어 사전을 기억하자! 데이터의 함축작인 의미를 부여할수 잇다!
         Map<String,String>map = new HashMap<>();
         map.put("a","apple");//객체 추가
 
