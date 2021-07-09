@@ -111,6 +111,9 @@ public class Memo {
       Student 클래스 안에 Comparable 구현되어 있지 않으면 ..?
       Exception!!!! ClassCastException
 
+        peek() : 중간처리 메소드 peek() -> sum() -> forEach()
+        forEach() : 최종처리 메소드 sum() -> forEach()
+
 
       4) 루핑 (looping): 중간처리에서 전체 요소를 반복하는 것
       peek(): 중간 처리 단계에서 전체 요소 루핑하며 추가적인 작업을 하기 위해 사용
@@ -127,11 +130,19 @@ public class Memo {
 
          * peek(): 마지막으로 올 수가 없음 (뒤에 최종 처리 메소드 필요!)
 
+      -최종처리 (하나의 값 또는 forEach를 통해 출력)
+        :하나의 값으로 산출
+         집계 (count(),max(),min,average(),sum(),findFirst())
+         매칭 (반환값 boolean allMatch(), anyMatch(), noneMatch())
+         수집 (중간처리 끝난 요소들을 컬렉션에 담음 ,collect())
+
+        :해당하는 원소를 출력
+        루핑(looping):forEach()
 
 
 
-   - 최종 처리
-      1) 집계: count(), max(), min(), average(), sum()
+ - 최종 처리
+     1) 집계: count(), max(), min(), average(), sum()
       :집계 (aggregate)는 최종처리 기능
       :카운팅,합계,평균값,최대/최소값 등 하나의 값으로 산출하는것
       (Reduction(reduce))=> 대량의 데이터 가공해서 축소함
@@ -147,21 +158,42 @@ public class Memo {
 
 
 
-      2) 매칭: allMatch(), anyMatch(), noneMatch() (boolean 반환)
+     2) 매칭: allMatch(), anyMatch(), noneMatch() (boolean 반환)
       :요소들이 특정 조건에 만족하는지 확인
       :boolean allMach(): 모든 요소들이 조건에 만족하는지 조사
       :boolean anyMach(): 최소한 한 개의 요소가 조건에 만족하는지 조사
       :boolean noneMach(): 모든 요소들이 조건에 만족하지 않는지  조사
 
 
-      3) 루핑 (looping)
+     3) 루핑 (looping)
       : forEach()
       :파이프 라인 마지막에 루핑하면서 요소를 하나씩 처리
       :요소를 처리하는 최종 처리 메소드
       (이후에 sum() 과같은 다른 최종 처리 메서드를 호출 (X))
 
+     4)커스텀 집계(reduce())
+      :집계 메소드 (sum(),average(),count(),max(),min(),findFirst())
+      :만약에 제공하고 있는 집계 메소드 이외의 집계를 하고싶다면?
 
-      4) 수집: collect()
+      OptionalXXX reduce(...)
+      Optional 클래스로 반환될 경우에는 orElse(),ifPresent(),isPresent()
+
+      스트림의 요소가 없을경우 디폴트 값을 선언
+       기본형 (int,double ,long)reduce(디폴트 값,...)
+      ex) T reduce (T 디폴트 값 ,...)
+      ex) int ,double ,long reduce (int,long,double 디폴트 값,...)
+
+
+     5) 수집: collect()
+       :중간 처리가 된 (필터링,매핑,정렬..)된 요소들을 수집하는 최종 메서드
+       :컬렉션에 담을 수 있고 요소들을 그룹핑해서 집계 (reduce)할 수 있음!
+
+       R collect(Collector<T,A,R>collector)
+       T : 요소 ,A : 누적기 (accumulator),R : 저장될 컬렉션
+       toList(),toSet(),toCollection(HashSet,LinkedList...)
+       toMap(key,value)
+
+
 
           *중간 처리 메소드 => 반환값이 스트림 타입
       *최종 처리 메소드 => 반환값이 기본타입이거나 OptionalXXX
