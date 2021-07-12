@@ -1,5 +1,5 @@
 package aa_memo;
-//모텔 예약하기
+
 public class Memo {
     /*
     [ IO (Input Output) 패키지 ]
@@ -328,8 +328,189 @@ cf) 스트림 (Stream): 데이터를 하나의 흐름으로 간주
      (make directory)
      boolean delete(): 파일 또는 디렉토리 삭제
 
+     @보조 스트림
+     :다른 스트림 (Input/OutputStream,Writer/Readr)과
+     연결해서 사용하는 스트림
+
+     :자체적으로 입출력 불가능
+     :입출력 성능 향상,객체 입출력 가능 제공
+
+  -Buffer 스트림(입출력 성능 향상)
+     =>바이트 기반 스트림 : BufferdInputStream,BufferdOutputStream
+     =>문자 기반 스트림 : BufferdWriter,BufferdReader
+
+     :8192 버퍼 사이즈 가짐
+
+     * 버퍼가 가득 찼을 떄만 출력을 하기 때문에
+     마지막 버퍼에 남겨있는 데어터가 목적지로 가지 못할 수 있음
+
+    *flush();를 통해 버퍼(에 잔류 데이터를 모두 보내줌 )를 비워 줌!
+
+ -기본 타입으로 입출력
+    : 바이트 스트림 (inputStream,OutputStream ) 바이트 단위로 입출력
+    :boolean,char,int,float,double 단위로도 입출력
+    :InputStream - DataInputStream - 프로그램 - DataOutputStream - OutputStream
+    -사탕껍질 씌어서 보내진다고 보면됨! (포장 )
+
+ -객체 입출력 보조 스트림
+    :객체를 파일 입출력
+    : 객체는 문자가 아니기 때문에 바이트 기반 스트림으로 출력해야 함
+    :객체 직렬화 (serialization)
+    => 객체를 출력하기 위해서는
+     필드값들을 일렬로 늘어선 연속적인 바이트 단위로 변경
+     ex) Student 필드 : id,name
+     id - name
+
+     :객체 역질렬화(deserialization)
+     => 연속적인 바이트를 다시 객체로 복원하는 것
+
+     :ObjectInputStream, ObjectOutputStream
+     :ObjectOutputStream: 바이트 출력 스트림과 연결되어서 객체 직렬화
+     ObjectInputStream : 바이트 입력 스트림과 연결되어서 객체 역 직렬화
+
+    :InputStream - ObjectInputStream - 프로그램 - ObjectOutputStream - OutputStream
+    readObject() - ObjectInputStream(역 직렬화)
+    writeObject() - ObjectOutputStream (직렬화 )
+
+    @네트워크
+    :네트워크 (network) : 여러 대의 컴퓨터를 통신 회선 연결한 것
+
+    1) 서버와 클라이언트
+    :서버 (server): 서비스를 제공하는 프로그램
+    :클라이언트 (client): 서비스를 받는 프로그램
+
+    a. 클라이언트 -> 연결 요청
+    b.서버 -> 연결 수락 -> 처리 -> 처리결과 -> 클라이언트
+    :클라이언트 / 서버 (C/S : Client/server)모델
+    -서버 1대 , 다수의 클라이언트 구성
+    :P2P (peer to peer)모델
+    -두개의 프로그램이 서버인 동시에 클라이언트 역할하는 모델
+    ex) 1:1 채팅, 파일 공유 프로그램
+
+    2) IP 주소와 포트
+    : IP (Internet Protocol): 컴퓨터 고유 주소
+    :xxx.xxx.xxx.xxxx
+    :xxx: 0~255
+
+    :DNS (Domain Name System)
+    :IP 주소 (숫자)외우기 어려워서 주소 이름을 설정
+    ex) 주소이름은 외우기 쉽지만 우편 번호는 외우기 어려움!
+
+    DNS : www.naver.com (toString 했다 보면됨!)
+    IP : 222.122.195.5
+    => 도메인 이름 검색 -> 해당 IP 를 가진 서버 연결
+
+   Port (포트 번호) : 컴퓨터에 현재 실행 중인 서버를 선택하기 위한 정보
+   ex) 하나의 컴퓨터에는 다양한 서버 프로그램이 있을 수 있음
+   웹 서버 => 80번, FTP 서버 => 21 번..
+
+   3) InetAddress 로 IP 주소 얻기
+   :java.net.InetAddress IP주소를 객체로 표현
+   : InetAddress : 로컬 컴퓨터의 IP 주소와
+   도메인 이름을 검색해서 IP 주소를 가지고 올수 있음!
+
+   @TCP(Transmission Control Protocol)    //보통은 섞어서 구축을함!
+   -연결 지향적 프로토콜
+   -클라이언트가 연결 요청을 하고 서버가 수락을할때 통신의 선로가 생성이 되고 고정된 선로로 움직임(통신 선로 고정)
+   -TCP 장점 : 데이터가 정확하고 안정적으로 전달
+   -TCP 단점 : 시간이 많이 걸림 (반드시 연결 형성)
+   *자바에서는 java.net.ServerSocket, java.net.Socket 클래스 제공
+   *Socket (소켓): 프로세스가 네트워크를 통해 데이터를 송수신하려면 열어야하는 창구
+
+     @UDP(User Datagram Protocol)                           //보통은 섞어서 구축을함!
+   -데이터 전송 속도를 지향하는 프로토콜
+   -UDP의 장점 :전송 방식이 단순,속도 효율적
+   -UDP 단점 : 신뢰성 낮음 (데이터 전송이 잘 되었는지 확인 불가 )
 
 
+   1)ServerSocket과 Socket
+   a.클라이언트 연결 요청을 수락 => Server Socket
+   b.연결된 클라이언트 통신 => Socket
+
+   *서버는 이미 클라이언트가 접속할 포트를 가지고 있어야 함 => 바인딩(binding) 포트
+   *서버는 고정된 포트 번호에 바인딩해서 실행
+   *ServerSocket 생성시 포트 번호 넘겨줌
+     * 포트 = 네트워크 상 아이피 주소 중에서도 그 안의 프로세스들 마다 접근하기 위한 고유 식별 번호
+
+
+    2) ServerSocket
+    나도 열고~ 서버도 열고~
+    ServerSocket socket = new ServerSocket(5001);
+    //5001 포트를 바인딩하는 ServerSocket 생성
+
+    -ServerSocket socket = new ServerSocket ();
+    socket.bind(new InetSocketAddress(5001));
+
+    ServerSocket socket = new ServerSocket ();
+    socket.bind(new InetSocketAddress("LocalHost",5001));// 나의 주소 보냄!,아이피 번호를 넣어도 문자열
+    표시를 해줘야함!
+
+    a.클라이언트의 연결 수락 accept()
+    *accept(): 클라이언트가 연결 요청하기 전까지 블로킹 (스레드 대기상태)됨
+    b. accept()은 연결 요청이 완료되면 클라이언트와 통신할 Socket 리턴
+    (연결 수락)
+    c.더이상 클라이언트 연결 수락이 필요없으면
+    ServerSocket close();(해당 포트를 언바인딩)
+    => 다른 프로그램에서 해당 포트 재사용할 수 있음!
+
+    3) Socket 생성과 연결 요청
+    :클라이언트가 서버에 연결요청을 하려면 Socket 사용
+    a. Socket 객체 생성함과 동시에 연결 요청하려면
+        생성자의 매게값으로 해서 IP 주소와 바인딩 포트 번호를 제공
+
+        new Socket("localhost",5001);//방법 1
+        new Socket
+          (new InetSocketHost("localhost",50001));//방법 2
+
+          b. 기본생성자로 Socket();을 생성한후
+    :connect() 호출
+    socket = new Sokcet();
+    socket.connect(
+    new InetSocketHost(""localhost),5001)
+
+    4) Socket 데이터 통신
+    :압력 스트림(InputStream)과 출력 스트림(OutputStream) 데이터 통신
+
+    //입력스트림
+    InputStream is = socket.getInputStream();
+
+    //출력 스트림
+    OutputStream is = socket.getOutputStream();
+
+    ex) String data = "보낼데이터";//보낼때
+    byte [] byteArr = data.getBytes("UTF-8");
+    OutputStream outputStream = socket.getOutputStream();
+    outputStream.write(byteArr);
+    outputStream.flush();
+    outputStream.close();
+
+    InputStream inputStream
+     = socket.getInputStream();
+    byte [] byteArr = new byte[100];
+    int readCount = inputStream.read(byteArr);
+    String data =new String (byteArr,0,readCount,"UTF-8")
+    inputStream.flush();
+    inputStream.close();
+
+    클라이언트 데이터 전달 => 서버
+    Output  => input
+
+    서버 데이터 전달    => 클라이언트
+    Output  => input
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
 
 
 

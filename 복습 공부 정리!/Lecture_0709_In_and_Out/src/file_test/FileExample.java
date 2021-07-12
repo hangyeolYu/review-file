@@ -14,8 +14,9 @@ public class FileExample {
         File file3 = new File(dir3.toString()+ "/file3.txt");
 
       // /Users/yuhangyeol/IdeaProjects/Lecture_0709_In_and_Out/src/aa_memo/Memo.java
-        if(!(dir1.exists())){
+        if(!(dir1.exists())){dir1.mkdir();
             //만약 dir.3 존재가 트루가 아니라면
+            //make dir
             dir3.mkdir();
         }
         if(!(dir2.exists())){
