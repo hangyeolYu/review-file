@@ -317,7 +317,7 @@ WHERE DEPTNO = 40;
     테이블 전체 데이터 삭제
     -특정행 삭제하고 싶으면 WHERE 절 추가!
 */
-
+SELECT  * FROM DEPT;
 SELECT * FROM EMP_TEMP2;
 
 DROP TABLE EMP_TEMP2;
@@ -327,7 +327,7 @@ CREATE TABLE EMP_TEMP2
 
 --Q1 이름에 M이 들어간 사원 삭제
 DELETE FROM EMP_TEMP2
-WHERE ENAME like UPPER('%E%');
+WHERE ENAME like UPPER('%M%');
 
 --Q2. 급여등급 3등급 (SALGRADE,EMP_TEMP2)인
 --사원중에 30번 부서 사원 삭제
@@ -338,6 +338,15 @@ WHERE DEPTNO =30 and SAL in
    WHERE  EMP.SAL BETWEEN SALGRADE.LOSAL
    and SALGRADE.HISAL and GRADE = 3);
 
+--센세 가능하면 기본키로 비교할수 있도록 하자 ! (NULL 값이 아닌 !)
+
+DELETE FROM EMP_TEMP2
+WHERE EMPNO in (SELECT E.EMPNO
+                FROM EMP_TEMP2 E , SALGRADE S
+                WHERE E.SAL BETWEEN S.LOSAL and S.HISAL
+                and S.GRADE =3
+                and E.DEPTNO = 30);
+
 
 --Q3. 추가 수당이 NULL 인 사원 삭제
 
@@ -345,11 +354,29 @@ DELETE FROM EMP_TEMP2
 WHERE COMM is null;
 
 --Q4. 부서 근무지가 'NEW YORK'인 부서에서 일하는 사원 삭제
-SELECT * FROM DEPT;
+DELETE FROM EMP_TEMP2
+WHERE DEPTNO in (SELECT DEPTNO FROM DEPT WHERE LOC LIKE 'NEW YORK');
 
+-- 센세
+
+
+DELETE EMP_TEMP2
+WHERE DEPTNO IN (SELECT D.DEPTNO
+                FROM EMP_TEMP2 E JOIN DEPT D
+                on (E.DEPTNO = D.DEPTNO)
+                WHERE D.LOC = 'NEW YORK');
+
+                -- On 은 조인에 조건이 붙을때 쓴다 !
 
 --Q5. 부서별 가장 연봉이 높은 사람을 제외하고 사원 삭제
 --GROUP BY , MAX()
+
+DELETE FROM EMP_TEMP2
+WHERE SAL not in(SELECT MAX(SAL)
+                 FROM EMP_TEMP2
+                 GROUP BY DEPTNO);
+
+
 
 
 
