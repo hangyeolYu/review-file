@@ -142,18 +142,18 @@ ROLLBACK  --여기서 롤백해도 위에 롤백으로 날아감 (1)
 2) 취소되거나
 
 트랙제션의 특징 (ACID)
-1) 원자성 (Atomicity)
+1) 원자성 (Atomicity) - 회복
 : 트랜젝션을 이루는 DML 코드를 하나의 원자로 보겠다!
 : ALL or Nothing
 
-2)일관성 (Consistency)
+2)일관성 (Consistency) -동시성 제어 (LOCKING), 무결정 제약조건
 : 트랜잭션 실행되기 전 오류가 없는 DB =>
     트랜잭션 실행 후 오류가 없는 DB
 
-3)격리성 (Isolation)
+3)격리성 (Isolation)- 동시성 제어 (LOCKING)
 : 트랜젝션 실행 도중에 다른 트랜젝션 영향을 받아 결과가 잘못되면 안된다!
 
-4) 지속성 (Durability)
+4) 지속성 (Durability) - 회복
 : 트랙제션이 성공적으로 수행되면 해당 트랜젝션이
 갱신한 DB 내용은 영구적으로 저장
 
