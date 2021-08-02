@@ -284,7 +284,189 @@ SELECT ROWNUM,E.*
 FROM E
 WHERE ROWNUM <=3;
 
---컴퓨터는 셀렉할때 위에서 아래로 읽음! 
+--컴퓨터는 셀렉할때 위에서 아래로 읽음!
+
+
+/*[시퀀스](SEQUENCE)
+  : 연속되는 숫자 생성 객체
+  :지속적으로 효율적인 번호 생성 가능
+
+  ex) 계시판에 글 목록 1,2,3,4,...
+  ,쇼핑몰 장바구니,찜목록 1,2,3,4,..
+
+  SELECT MAX(목록)+1
+  FROM 게시판 테이블
+  (문제점?)
+  -MAX(목록): 게시판 글 1000개 가 넘어갈떄 하나하나 다 세봐야함
+  >>(테이블의 사이즈가 커지먄 느려짐)
+
+    시퀀스 생성
+
+  형식)
+  CREATE SEQUENCE 시퀀스 이름
+  [INCREMENT BY n] - 번호의 증가값 (기본값 1) (선택)
+  [STRART WITH n] - 번호의 시작값 (기본값 1) (선택 )
+  [MAXVALUE n | NOMAXVALUE] (선택)
+  -MAXVALUE: 시퀀스의 최댓값
+   NOMAXVALUE : 오름차순 10^27, 내림차순 -1
+  [MINVALUE n | NOMAXVALUE] (선택)
+  -MINVALUE :  시퀀스의 최솟값
+   NOMINVALUE : 오름차순 1 ,내림차순 10^-26 == 1/10^ 26
+  [CYCLE | NOCYCLE]
+  CYCLE : 최댓값 도달했을 경우 다시 시작값으로 돌아감
+  NOCYCLE : 최댓값 도달했을 경우 번호 생성 중단 (오류 발생 )
+  [CASCE n | NOCACHE](선택) 기본값 (20)
+  -CASCE : 생성할 번호 미리 지정
+   NOCACHE: 미리 지정 X
+*/
+
+    --실습 DEPT_SEQUENCE 테이블 (구조만 복사)
+
+ CREATE TABLE DEPT_SEQUENCE
+ AS SELECT *FROM DEPT WHERE 1<>1;
+
+SELECT * FROM DEPT_SEQUENCE;
+
+--DEPTNO를 시작값 10, 10 씩 증가할 수 있도록 생성
+CREATE SEQUENCE SEQ_DEPTNO
+INCREMENT BY 10
+START WITH 10
+MAXVALUE 90
+MINVALUE 0
+NOCYCLE
+CACHE  20;
+
+SELECT * FROM USER_SEQUENCES;
+
+--시퀀스 사용
+
+--시퀀스 이름.CURRVAL => 마지막으로 생성한 번호 반환
+--*아직 시퀀스를 사용한 적이 없을떄는 CURRVAL 가 없음
+-- => 사용하면 오류가 남
+--=> 시퀀스를 생성하자마자 바로 CURRVAL 사용할수 없음
+
+--시퀀스 이름.NEXTVAL => 다음 생성할 번호 반환
+
+
+INSERT INTO DEPT_SEQUENCE (DEPTNO)
+VALUES (SEQ_DEPTNO.NEXTVAL);
+--최댓값을 넘게 될 경우에는 오류 발생
+
+SELECT * FROM DEPT_SEQUENCE;
+
+SELECT SEQ_DEPTNO.CURRVAL
+FROM DUAL;--연산 확인용 테이블(DUMMY TABLE)
+
+
+
+--시퀀스 수정(START WITH 는 수정불가)
+/*
+ALTER SEQUENCE 시퀀스 이름
+ 형식)
+  CREATE SEQUENCE 시퀀스 이름
+  [INCREMENT BY n] - 번호의 증가값 (기본값 1) (선택)
+  [MAXVALUE n | NOMAXVALUE] (선택)
+  -MAXVALUE: 시퀀스의 최댓값
+   NOMAXVALUE : 오름차순 10^27, 내림차순 -1
+  [MINVALUE n | NOMAXVALUE] (선택)
+  -MINVALUE :  시퀀스의 최솟값
+   NOMINVALUE : 오름차순 1 ,내림차순 10^-26 == 1/10^ 26
+  [CYCLE | NOCYCLE]
+  CYCLE : 최댓값 도달했을 경우 다시 시작값으로 돌아감
+  NOCYCLE : 최댓값 도달했을 경우 번호 생성 중단 (오류 발생 )
+  [CASCE n | NOCACHE](선택) 기본값 (20)
+  -CASCE : 생성할 번호 미리 지정
+   NOCACHE: 미리 지정 X
+*/
+
+ --시퀀스에 CYCLE 추가, 증가값을 2, 최댓값 99
+ALTER SEQUENCE SEQ_DEPTNO
+INCREMENT BY 2
+MAXVALUE 99
+CYCLE;
+
+SELECT * FROM USER_SEQUENCES;
+INSERT INTO DEPT_SEQUENCE(DEPTNO)
+VALUES (SEQ_DEPTNO.NEXTVAL);
+
+SELECT * FROM DEPT_SEQUENCE;
+
+--시퀀스 삭제
+--DROP SEQUENCE
+
+--DEPTNO => 시퀀스 통해 생성 (스퀀스를 삭제해도 DEPTNO 데이터는 사라지지 않음)
+
+DROP SEQUENCE SEQ_DEPTNO;
+SELECT * FROM USER_SEQUENCES;
+SELECT * FROM DEPT_SEQUENCE;
+
+/* 동의어 (synonym)
+ : 테이블,뷰,시퀀스의 객체 이름 대신 사용할 수 있는 다름 이름 부여
+ : ex) 테이블의 이름이 길 경우 동의어를 만듬
+
+  동의어 생성법
+  CREATE [PUBLIC(다른 계정에서도 사용가능)] SYNONYM 동의어 이름
+  FOR [사용자.][객체이름];
+
+   PUBLIC - DB 내의  모든 사용자가 사용할 수 있도록 생성
+   (생략할 경우, 동의어를 생성한 사용자만 사용이 가능 )(선택)
+   동의어 이름 - 생성할 동의어 이름 (필수)
+   사용자. - 생성할 동의어를 소유 사용자 지정
+   (생략할 경우 , 현재 접속한 사용자 지정 ) (선택 )
+   객체 이름 - 동의어를 생성할 객체 이름 (테이블,뷰,시퀀스) (필수)
+
+
+   동의어가 VS 테이븡 별칭 (FROM 테이블 이름 별칭 )
+   :동의어는 DB에 저장되는 객체 (일회성 X)
+   :테이븧 객체는 일회성
+
+   --SCOOTT 계정에 동의어를 생상할수 있는 권한 부여 (SQLPLUS)
+   --1)동의어 권한 부여
+   2) public 권한 부여
+
+   --cmd | terminal 창에서
+--docker exec -it oracle sqlplus 입력(DOCKER 통해서 SQLPLUS 접속)
+--system/oracle 입력(최고 권한 계정 들어감)
+--grant create synonym to scott; 입력(scott 계정 동의어 자격 활성화)
+--grant create public synonym to scott; 입력(scott 계정 public 동의어 자격 활성화)
+
+*/
+--동의어 생성 (EMP -> E)
+CREATE SYNONYM E
+FOR EMP;
+
+SELECT * FROM E;
+
+--동의어 생성 (DEPT -> D)
+CREATE SYNONYM D
+FOR DEPT;
+
+SELECT * FROM D;
+
+--Q1 .부서가 RESEARCH 에서 일하는 사원출력
+SELECT E.*
+FROM E join D on (E.DEPTNO = D.DEPTNO)
+WHERE DNAME like 'RESEARCH';
+--join 없이 출력 가능
+SELECT *
+FROM E
+WHERE E.DEPTNO in (SELECT DEPTNO
+                    FROM D
+                    WHERE DNAME like 'RESEARCH');
+
+
+--Q2 . 부서가 SALES 에서 일하는 사원 평균 연봉 출력
+SELECT ROUND(AVG(SAL*12+NVL(E.COMM,0)),2) AS PEEE
+FROM E join D on (E.DEPTNO = D.DEPTNO)
+where D.DNAME like 'SALES';
+
+--join 없이 출력
+
+WITH  DEPT_D AS (SELECT DEPTNO FROM D WHERE D.DNAME like 'SALES')
+SELECT AVG(SAL*12 +NVL(COMM,0))
+FROM E
+WHERE E.DEPTNO in DEPT_D.DEPTNO;
+
 
 
 
