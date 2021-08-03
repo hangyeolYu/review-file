@@ -12,6 +12,7 @@
    (화나의 테이블에 하나만 지정할 수 있음)
    4) FOREIGN KEY (외래키 ) : 다른 테이블에 열 참조하는값 입력
    5) CHECK : 조건식에 만족하는 데이터만 입력 가능
+   6)DEFAULT : 열에 들어갈 데이터 기본값을 지정할수 있음(졔약조건은 아님 )
 
    * 테아블이 생성될떄 제약조건을 같이 지정 (보통)
    나중에 테이블 변경시에도 지정할 수 있음
@@ -59,6 +60,11 @@ SELECT * FROM USER_CONSTRAINTS;
   제약 조건 이름 지정
   =>=> 제약 조건 관리를 위해 이름을 지정해주는것이 좋음
 */
+SELECT * FROM USER_CONSTRAINTS
+    WHERE TABLE_NAME = 'GAME_ID_CLASS';
+--특정 테이블의 제약조건
+
+
 CREATE TABLE GAME_ID_PASS_CONS_NAME (
     GAME_ID VARCHAR(20) CONSTRAINT ID__NN NOT NULL ,
     GAME_PASS VARCHAR(20)CONSTRAINT  PASS_NN NOT NULL ,
@@ -120,10 +126,10 @@ SELECT * FROM USER_CONSTRAINTS;
 
 --데이터 삽입  2명 (ID가 같은)
 INSERT INTO STUDENT
-VALUES (2021001,'홍길동','010-1234-5678');
+VALUES (null,'홍길동','010-1234-5678');
 
 INSERT INTO STUDENT
-VALUES (2021001,'홍길순','010-1234-1234');
+VALUES (NULL,'홍길순','010-1234-1234');
 --데이터 삽입  2명 (ID가 NUlL)
 
 INSERT INTO STUDENT
@@ -140,7 +146,7 @@ ALTER TABLE STUDENT
 DROP CONSTRAINT ID_UQ;
 
 --제약조건 추가 (ID_UQ)
---제약조건 추가 불가! 이미 ID 가 UNIQUE 하지않음!
+--제약조건 추가 불가! 이미 ID 가 UNIQUE 하지않음! --(@)
 
 DELETE FROM STUDENT
 WHERE ID = 2021001 and NAME = '홍길순';
@@ -152,7 +158,7 @@ MODIFY (ID CONSTRAINT ID_UQ UNIQUE );
 --제약조건 이름 변 (ID_UQ => )
 
 ALTER TABLE STUDENT
-RENAME CONSTRAINT ID_UQ to ID_UNIQYE;
+RENAME CONSTRAINT ID_UQ to ID_UNIQYE; --(@)
 
 --3) PRIMARY KEY (기본키)
 -- : UNIQUE + NOT NULL
@@ -246,7 +252,7 @@ VALUES (5000,'이클립','DEVELOPER',50);
 -- ....(다른열 정의),
 -- 열 자료형 CONSTRAINT [제약조건 이름(선택)] FOREIGN KEY (열이름 )
 -- REFERENCE 참조 테이블(열 )
---
+-- REFERENCE (관계적인)
 --
 -- );
 
@@ -267,7 +273,7 @@ CREATE TABLE EMP_FK (
     HIREDATE DATE,
     SAL NUMBER(7,2),
     COMM NUMBER(7,2),
-    DEPTNO NUMBER(2) CONSTRAINT EMP_FK_FK REFERENCES DEPT_FK(DEPTNO)
+    DEPTNO NUMBER(2)  CONSTRAINT EMP_FK_FK REFERENCES DEPT_FK(DEPTNO)
 );
 
 INSERT INTO EMP_FK(EMPNO,ENAME,DEPTNO)
@@ -333,7 +339,7 @@ CREATE TABLE EMP_FK (
      CONSTRAINT  EMP_FK_PK PRIMARY KEY  (EMPNO),
      CONSTRAINT EMP_FK_FK FOREIGN KEY (DEPTNO)
      REFERENCES DEPT_FK(DEPTNO) ON DELETE SET NULL
-    -- 삭제 할때 나도 같이 삭제!
+    -- 삭제 할때 null 이됨!
 );
 
 SELECT * FROM USER_CONSTRAINTS;
@@ -346,3 +352,141 @@ DELETE FROM DEPT_FK
 WHERE DEPTNO =10;
 --ON DELETE CASCADE 시 관련된 10 데이터가 전부 사라짐 ! EMP_FK 에도!
 --데이터에 형식,관계도에 따라 상황에 마춰 사용하자~!
+
+--5) CHECK
+
+-- : 데이터에 조건을 지정 (값 범위 , 패턴 정의)
+-- EX) 나이 : 1~ 99, 시 : 0~ 23 분 : 0~ 59 초 : 0~ 59
+
+--   방법 1
+DROP TABLE GAME_ID_CLASS;
+CREATE TABLE GAME_ID_CLASS (
+    LOGIN_ID VARCHAR(20) CONSTRAINT LOGIN_ID_PK PRIMARY KEY,
+    LOGIN_PWD VARCHAR(20),
+    PHONE VARCHAR( 20) CONSTRAINT PHONE_CK CHECK ( LENGTH(PHONE) > 11 )
+   --010-1234-5678
+
+    );
+
+--   방법 2 하단열에 설명 추가
+DROP TABLE GAME_ID_CLASS;
+CREATE TABLE GAME_ID_CLASS (
+             LOGIN_ID VARCHAR(20) ,
+              LOGIN_PWD VARCHAR(20),
+           PHONE VARCHAR( 20),
+            CONSTRAINT LOGIN_ID_PK PRIMARY KEY (LOGIN_ID),
+            CONSTRAINT PHONE_CK CHECK ( LENGTH(PHONE) > 11 )
+    --010-1234-5678
+
+);
+
+SELECT * FROM GAME_ID_CLASS;
+SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'GAME_ID_CLASS';
+
+--데이터 두명 삽입
+INSERT INTO GAME_ID_CLASS
+VALUES ('ID_1','1234','010-11-1111');
+--이놈 번호가 이상함 ㅋ 오류뜸
+
+INSERT INTO GAME_ID_CLASS
+VALUES ('ID_2','1234','010-111-1111');
+
+SELECT * FROM GAME_ID_CLASS;
+
+INSERT INTO GAME_ID_CLASS(PHONE)
+VALUES ('010-111-1111');
+--ID 가 PRIMARY KEY 는 유닠 하고 , 널이 올수 없음! (UNIQUE+NOT NULL)
+
+--6) DEFAULT (기본값)
+--: 기본값 지정
+--: 특정 열에 아무 값도 들어오지 않을 경우애 기본값으로 지정
+--: 제약조건 아님 (USER_CONSTRAINTS 에 추가되지 않음)
+
+--테이블 이룸
+--: 유튜브 프리미엄 맴버 (YT_PR_MEMBER)
+--열 구성
+--   1)ID: VARCHAR(20) (PRIMARY KEY) (1aaa(X),aaa1(O))
+    --사전순서 생각해보자
+--   2)PW : VARCHAR (20) (CHECK로 7자리를 넘겨야 함 )
+--   3)NAME: VARCHAR(10)
+--   4)BIRTHDAY: DATE
+--   5)REGDATE: DATE (SYSDATE)
+--   6)ISPAID: NUMBER (1) (1 == TRUE,0 == FALSE) (DEFAULT 0)
+
+CREATE TABLE YT_PR_MEMBER (
+    ID VARCHAR(20) ,
+    PW VARCHAR(20),
+    NAME VARCHAR(10),
+    BIRTHDATE DATE,
+    REGDATE DATE DEFAULT SYSDATE,
+    ISPAID NUMBER (1) DEFAULT 0,
+    CONSTRAINT YT_ID_PK  PRIMARY KEY (ID) ,
+    CONSTRAINT YT_PW_CK CHECK ( LENGTH(PW) > 7 ),
+    CONSTRAINT YT_ID_CK CHECK ( UPPER(ID) BETWEEN 'A' AND 'Z' )
+
+
+
+);
+--숫자 + 영어 사전
+--111a -> '1'
+--a111-> 'a'
+
+SELECT * FROM USER_CONSTRAINTS
+WHERE TABLE_NAME = 'YT_PR_MEMBER';
+
+INSERT INTO YT_PR_MEMBER(ID,NAME)
+VALUES ('gildong','홍길동');
+--널값은 제약조건을 확인하지 않음 ㅋ (pw 입력 X 인데 NULL 을 가짐 )
+
+SELECT * FROM YT_PR_MEMBER;
+
+INSERT INTO YT_PR_MEMBER(ID,NAME)
+VALUES ('1gildong','홍길동'); -- id 첫번쨰가 숫자로옴 !
+
+INSERT INTO YT_PR_MEMBER(ID,NAME,pw)
+VALUES ('gilsun','홍길동','1234');-- password 제약조건(7글자)을 만족못함!
+
+INSERT INTO YT_PR_MEMBER(NAME)
+VALUES ('홍홍');
+--ID 가 기본키로 되있어서 널값이 들어갈수 없음!
+
+INSERT INTO YT_PR_MEMBER
+VALUES ('eunbin','12345678','박박',
+        TO_DATE('1990/11/30','YYYY/MM/DD'),SYSDATE,null);
+--디폴트 값이 있던 ISPAID 열에 NULL 을 명시적으로 넣게 되면 null로 설정됨!
+
+INSERT INTO YT_PR_MEMBER(ID,PW,NAME)
+VALUES ('echoi','12345678','최촤');
+--디폴트 값이 있던 ISPAID 열에
+--아무 값도 넣지 않으면 디폴트 값으로 설정
+
+SELECT * FROM USER_CONSTRAINTS
+WHERE TABLE_NAME = 'YT_PR_MEMBER';
+
+--제약조건 활성화/비활성화
+--: 활성화 - 제약조건 확인
+--: 비활성화 - 제약조건 확인X
+-- 비활성화 언제?
+--1) 테스트 업무시에 제약조건을 잠깐 꺼둠
+
+--비활성화 YT_ID_CK 제약조건을 꺼둠
+ALTER TABLE YT_PR_MEMBER
+DISABLE  CONSTRAINT YT_ID_CK;
+
+SELECT * FROM USER_CONSTRAINTS
+WHERE CONSTRAINT_NAME = 'YT_ID_CK';
+
+
+--다시 활성화
+ALTER TABLE YT_PR_MEMBER
+ENABLE  CONSTRAINT YT_ID_CK;
+
+--*제약조건 | 제약조건 타입
+--NOT NULL  C
+--UNIQUE  U
+--PRIMARY KEY   P
+--FOREIGN KEY   R
+--CHECK    C
+--DEFAULT
+
+
