@@ -187,3 +187,55 @@ SELECT * FROM SCOTT.PRIV_TEST;
 
 --객체 권한 취소
 REVOKE SELECT,INSERT,UPDATE on PRIV_TEST FROM HANGYOUL;
+--SQLPLUS
+--SELECT * FROM SCOTT.RPIV_TEST
+--"TABLE OR VIEW DOES NOT EXIST"
+
+/*       3) 롤 (role,역할) 관리
+ :새로운 사용자의 권한 관리 일일이 부여해 줘야함 (부울편)
+ :롤 (role): 여러 개의 권한을 묶어놓은 그룹
+ : 롤 역할에 따라 한버에 부여하고 해제할 수 있음 >> 관리하기 편함
+
+  : 오라클 DB에서는
+  A.오라클이 정의한 룰
+  -CONNECT (기본 부여): CREATE SESSION /TABLE/SEQUENCE..(오라클 10에서 사라짐!)
+  -RESOURCE (기본 부여 ): 사용자 테이블 + 다른객체 (인덱스,시퀀스 ...)까지 생성할수 있는 시스템 권한
+  CREATE TABLE/SEQUENCE..
+
+  * 뷰,동의어 생성하고 싶으면 따로 권한을 줘야함
+  CREATE VIEW/SYNONYM
+
+   -DBA
+   DB를 관리하는 시스템 권한을 대부분 가지고 있음
+
+   B. 사용자가 정의한 롤
+   :사용자가 필요에 의해 필요한 권한을 묶어 놓을 수도 있음
+   1.CREATE ROLE 문으로 롤 생성
+   2. GRANT 명령어를 통해 롤에 권한을 포함시킴
+   3.GRANT 먕량어로 해당 롤을 특정 사용자에게 부여
+   4.REVOKE 명렁어로 롤  취소
+
+*/
+--사용자 롤 생성
+CREATE ROLE HANGYOULROLE;
+
+--생성할 권한을 부여
+GRANT CONNECT,RESOURCE,CREATE VIEW,CREATE SYNONYM TO HANGYOULROLE;
+--롤을 사용자 HANGYOUL 에게 부여
+GRANT HANGYOULROLE TO HANGYOUL;
+
+--롤을 사용자에게 주면서 동시에 다른사람에게도 줄수 있음!
+GRANT HANGYOULROLE TO HANGYOUL WITH ADMIN OPTION ;
+
+SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'HANGYOUL'; --role 로 묶은 권한
+SELECT * FROM DBA_SYS_PRIVS WHERE GRANTEE = 'HANGYOUL';--시스템 권한
+SELECT * FROM DBA_TAB_PRIVS WHERE GRANTEE = 'HANGYOUL'; --객체 권한
+
+--부여한 롤 취소
+REVOKE HANGYOULROLE FROM HANGYOUL;
+
+--롤 삭제
+DROP ROLE HANGYOULROLE;
+
+--권한 모두 부여
+GRANT ALL PRIVILEGES TO HANGYOUL;
