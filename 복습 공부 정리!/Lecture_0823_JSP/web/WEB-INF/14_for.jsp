@@ -15,11 +15,31 @@
 
 <%
     int sum = 0;
-    for(int i =0;i <10;i++ ) {
+    for(int i =0;i <=10;i++ ) { //식떄문에 <= 해야함
     sum+= i ;  %>
-  <%=i%>+
-    }
+  <%=i%>
+ <% if (i ==10){break;}%>
+
++
+    <%}%>
 = <%=sum%>
+
+<%--out 객체 printIn()함수--%>
+<%  int sum2 = 0;
+    for(int j =1;j <=10;j++){
+        if(j<10){
+            System.out.println(j+"+");}
+        else{
+            System.out.println(j+"=");
+        }
+        sum2 +=j;
+
+    }
+
+    System.out.println(sum2);
+
+
+%>
 
 
 </body>

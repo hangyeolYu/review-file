@@ -15,14 +15,16 @@
 </head>
 <body>
 
-<%--스크립트립 (jspService() 함수 내부 )--%>
+<%--스크립트립   (*******) (jspService() 함수 내부 )--%>
     <%
         double round = Math.round(Math.PI);
 
+//        Date date = new Date();
+//        SimpleDateFormat simple
+//        = new SimpleDateFormat("YYYY-MM-DD");
+//        String strdate = simple.format(date);
+
         Date date = new Date();
-        SimpleDateFormat simple
-        = new SimpleDateFormat("YYYY-MM-DD");
-        String strdate = simple.format(date);
     %>
 
 
@@ -39,7 +41,8 @@
         매개 변수 값 중에서 더 큰값을 반환 하는 메소드 --%>
 
 얘는 파이값 반올림 :<%=round%> <br>
-  오늘 날짜 :   <%=strdate%> <br>
+<%--  오늘 날짜 :   <%=strdate%> <br>--%>
+    오늘 날짜 : <%=date.toString()%>
    두수중 더 큰수를 반환 : <%=better(1,2)%> <br>
 
 </body>

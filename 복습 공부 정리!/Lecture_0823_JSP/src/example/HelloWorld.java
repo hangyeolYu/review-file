@@ -2,6 +2,7 @@ package example;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
+import javax.*;
 
 @WebService()
 public class HelloWorld {

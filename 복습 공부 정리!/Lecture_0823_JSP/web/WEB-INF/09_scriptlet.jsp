@@ -23,12 +23,12 @@
     --%>
 
  <%!
-     int one;
-     String msgOne;
+     int one; // 0 으로 초가화
+     String msgOne; //null 로 초기화
 
  %>
 
-<%
+<%    //초기화 하지않으면 에러!
     int two =31;
     String msgTwo = "Scriptlet Example";
 
