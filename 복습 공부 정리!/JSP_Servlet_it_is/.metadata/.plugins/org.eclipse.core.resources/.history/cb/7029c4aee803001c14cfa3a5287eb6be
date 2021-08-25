@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	Math.round(Math.PI)  
+	현재 날짜와 시간은 ? 2021-08-23 5:03....
+
+-->
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!-- 
+	JSP 특징
+	: 동적인 페이지를 만드는 사용하는 웹 어플리케이션 중에 하나
+	
+	JSP page (브라우저 화면 표현)
+	-> Servlet으로 변환 (.java) (내부적으로 처리할 부분에 좋음) 
+	-> 컴파일 
+	-> 실행
+	
+
+
+ -->
+
+
+
+
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

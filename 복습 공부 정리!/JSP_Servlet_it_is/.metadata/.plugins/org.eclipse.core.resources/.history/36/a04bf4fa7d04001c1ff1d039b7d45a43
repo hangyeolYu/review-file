@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>While Example</h1>
+<form method="post" action="11_while.jsp">
+message: <input name="msg"><br/>
+
+</form>
+</body>
+</html>

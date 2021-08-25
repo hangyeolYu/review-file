@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- out
+	: jsp 페이지의 결과를 클라이언트에게 출력 스트림 객체
+	: jsp 페이지 --> 클라이언트 모든 정보들은 out 객체를 통해 전송
+
+ -->
+</body>
+</html>

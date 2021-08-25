@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>If-else Example</h1>
+<form method="post" action="#">
+이름 : <input name="name"><br/>
+
+</form>
+</body>
+</html>

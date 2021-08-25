@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"
+    buffer="5kb"
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+<% 
+	int total = out.getBufferSize();
+	int remain = out.getRemaining();
+	int use = total - remain;
+	
+
+%>
+
+Total: <%=total%> byte<br/>
+Remain: <%=remain%> byte<br/>
+Use: <%=use%> byte<br/>
+
+</body>
+</html>

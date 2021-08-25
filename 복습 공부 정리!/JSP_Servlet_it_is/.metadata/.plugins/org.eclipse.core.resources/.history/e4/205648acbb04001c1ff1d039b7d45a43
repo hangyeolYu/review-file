@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("EUC-KR");
+	
+	String season = request.getParameter("season");
+	String fruit = request.getParameter("fruit");
+	
+	String id = (String)session.getAttribute("idKey");
+	// session 객체에서 idKey로 연결된 값 반환
+
+%>
+</body>
+</html>

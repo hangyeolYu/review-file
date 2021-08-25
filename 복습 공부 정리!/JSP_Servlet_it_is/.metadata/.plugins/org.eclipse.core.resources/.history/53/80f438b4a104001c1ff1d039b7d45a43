@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Forward Tag with Param</h1>
+<form method="post" action="15_forwardTag2_1.jsp"
+</body>
+</html>

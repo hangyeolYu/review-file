@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<%@ page import="java.util.*"%>
+<!-- Date 클래스  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+	PI 반올림: Math.round(Math.PI)  
+	현재 날짜와 시간은 ? 2021-08-23 5:03....
+	(???)
+	
+	두 개 매개변수 값 중에서 더 큰 값을 반환하는 메소드
+	(???) 
+-->
+<% final int PI = Math.round(Math.PI)L%>
+<%! %>
+
+
+</body>
+</html>

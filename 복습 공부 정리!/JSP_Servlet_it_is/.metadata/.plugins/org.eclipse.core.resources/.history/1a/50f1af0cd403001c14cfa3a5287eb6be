@@ -1,0 +1,20 @@
+
+<!-- 동적 페이지 
+	자바 
+	Date() 객체를 이용해서 날짜 반환
+	
+	SimpleDateFormat("yyyy-MM-dd") 
+	: Date() 날짜를 원하는 형태로 반환
+-->
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html>

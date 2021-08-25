@@ -1,0 +1,29 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 스크립트릿 
+	: 선언부에서 선언한 text를 쓰고 있음
+	: 선언부보다 위에 있어도 선언부가 먼저 읽힘 (오류 발생 X)
+-->
+<% 
+	String jsp = text + " JSP";
+%>
+
+<!-- 선언부 -->
+<%! 
+	String text = "Hello";
+%>
+
+<!-- 표현식 -->
+<%=jsp%>
+
+
+</body>
+</html>

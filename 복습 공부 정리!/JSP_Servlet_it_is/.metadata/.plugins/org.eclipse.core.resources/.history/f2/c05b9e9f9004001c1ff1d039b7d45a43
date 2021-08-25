@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	request.setCharacterEncoding("euc-kr");
+	String name = "Sally"; 
+	// 의미가 없는 부분 (사용 X)
+
+%>
+<h1>Include Action Tag</h1>
+<jsp:include page="09_includeTagTop1.jsp"/>
+<!-- 7 -> 8 -> 9
+		  8 <- 9
+ -->
+
+
+include Action Tag의 Body 부분
+</body>
+</html>
