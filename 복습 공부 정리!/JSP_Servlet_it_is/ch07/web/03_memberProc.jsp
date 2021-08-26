@@ -13,7 +13,9 @@
 <%--빈을 사용하겠다!(빈생성 )--%>
 <jsp:setProperty name="regBean" property="*"/>
 <%--member Beans 의 모든 필드를 (id,name,pwd..)
-     를 set 하기위한 함수 호출 --%>
+     를 set 하기위한 함수 호출
+
+     자바 빈즈 값 == input 태그 name 값 --%>
 <html>
 <head>
     <title>회원가입 확인</title>
@@ -54,7 +56,7 @@
                         <td colspan="2" align="center">
                             <input type="button" value="확인완료"> &nbsp;
                             <input type="button" value="다시쓰기" onClick="history.back()">
-                            <!-- 잘못된 정보가 있으면 다시 02_member.jsp로 이동하여 회원정보를 다시 입력받음 -->
+                            <!-- history.back() : 잘못된 정보가 있으면 다시 02_member.jsp(이전 페이지)로 이동하여 회원정보를 다시 입력받음 -->
                         </td>
                     </tr>
                 </form>

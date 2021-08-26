@@ -9,7 +9,7 @@
 <body>
 <%
 	response.sendRedirect("04_response1_1.jsp");
-	response.setContentType("text/html");
+	response.setContentType("text/html; charset=EUC-KR");
 	// text/html, text/plain, text/gif, text/xml...
 	
 %>

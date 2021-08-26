@@ -13,19 +13,19 @@ ex) DB 연결, 사용자 관리
 
 <jsp:useBean id="..." class="..." scope="..."/>
 : 빈 생성
-  - id : 빈이름
+  - id : 빈 이름
   - class : 클래스 이름
   -scope : 빈이 살아있는 유효 영역
   *page,request (사용자 요청),session (열려있는동안),application (열려있는동안)
 
   <jsp:setProperty name = "..."
-  property = "..."value= "..."/>
+  property = "..."value= "..."/> == setXXXX(value)
   :빈값 설정 (setter 호출)
      -name : useBean id 값과 동일
      -property: 빈의 변수 (속성) 선택
 
      <jsp: getProperty name = "..."
-     property = "..."   value= "..."/>
+     property = "..." /> == getXXXX()
      :빈 값 반환 (getter 호출)
      -name : useBean id 값과 동일
      -property : 빈의 변수 (속성 선택 )
