@@ -43,7 +43,7 @@ public class RegisterMgr {
 
             if (rs != null){
                 while (rs.next()){ //다음 레코드 유무 반환 (true/false)
-                    //out.println("sss");
+                    //out.println("sss"); 첫행은 기준이라 다음부터 기준을 잡음 !
                     RegisterBean bean = new RegisterBean();
 
 
