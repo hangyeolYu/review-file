@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/BoardBean.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/BoardMgr.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/BoardPostServlet.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/BoardReplyServlet.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/BoardUpdateServlet.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/DBConnectionMgr.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ex01/UtilMgr.java" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/00_table.sql" charset="EUC-KR" />
+  </component>
+</project>
