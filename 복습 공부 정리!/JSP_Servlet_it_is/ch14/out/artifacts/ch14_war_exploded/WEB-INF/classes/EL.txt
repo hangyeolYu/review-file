@@ -1,0 +1,48 @@
+[JSP 표현 언어 (Expression Language ,EL)]
+
+jsp 스크립트 요소  (4가지)
+1) 선언부 <%! %> (클래스의 맴버 변수로 선언,또는 함수)
+2) 스크립트릿  <% %> (지역 변수 ex) 함수 안에서 소멸되는 함수 )
+3) 표현식 <%= %>
+4) 주석 <%-- --%>
+
+-3) 표현식을 간단하게 사용하기 위해서
+ex)
+
+<%=name %>   =>   ${name}
+- EL 내장 객체 (web 의 저장소 (scope))
+page (페이지 내에서 유요한 객체 ) < request(응답 동안) <session (세션 유지동안)< application (어플리케이션이 실행되는 동안)
+
+pageScope: page 영역에 존재하는 객체 참조시 사용
+requestScope: request 영역에 존재하는 객체 참조시 사용
+sessionScope: session 영역에 존재하는 객체 참조시 사용
+applicationScope: application 영역에 존재하는 객체 참조시 사용
+param: 파라미터 값 얻어올 때 사용
+paramValues: 파라미터 값을 배열로 얻어올 때 사용
+header: header 정보를 얻어올 때 사용
+headerValues: header 정보를 배열로 얻어올 때 사용
+cookie: 쿠키 객체를 참조할 때 사용
+
+-속성값을 가져올때
+${param.id}
+${param["e-mail"]}:(대가로를 사용해 속상값을 가져올떄) 속성명에 특수문자 / 공백문자를 포함하고 있을떄
+
+-파라미터 값을 배열로 들고올떄
+${paramValues.id[0]}
+${param["e-mail"][0]}:(대가로를 사용해 속상값을 가져올떄) 속성명에 특수문자 / 공백문자를 포함하고 있을떄
+
+-EL 연산자
+:빈 (bean)에 접근하는 연산자
+[] : 배열(리스트에 접근하는 연산자)
+(): 연산자 우선순위 지정
+x ? a: b => 삼항 연산자
+empty : 값이 null  일경우 true 반환
+
+2) 산술 연산자 +,-,*,/ (div),% (mod)
+
+3) 논리 연산자
+&&(and),||(or),!(not)
+
+4) 비교 연산자
+==(eq),!=(nq),>(gt),<(lt),>=(ge),<=(le)
+
