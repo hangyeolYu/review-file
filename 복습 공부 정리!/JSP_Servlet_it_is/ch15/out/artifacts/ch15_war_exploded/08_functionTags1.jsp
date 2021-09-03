@@ -26,9 +26,12 @@ toLowerCase  : <b>${fn:toLowerCase(str)}</b><br/>
 replace  : <b>${fn:replace(str,"JSP","Android")}</b><br/>
 indexOf  : <b>${fn:indexOf(str,"the")}</b><br/>
 startsWith  : <b>${fn:startsWith(str,"JSP")}</b><br/>
+<%--첫번째 글자가 JSP 가 맞니?--%>
 endsWith  : <b>${fn:endsWith(str,"JSP")}</b><br/>
+<%--마지막 글자가 JSP 가 맞니?--%>
 contains  : <b>${fn:contains(str,"jsp")}</b><br/>
 containsIgnoreCase  : <b>${fn:containsIgnoreCase(str,"jsp")}</b><br/>
+<%--얘는 대소문자 상관없이 검색함 --%>
 trim  : ***<b>${fn:trim("   Hello!!!! JSP!!!!!   ")}</b>***<br/>
 <c:set var="arr" value="${fn:split(str,' ')}"/>
 join : <b>${fn:join(arr,"&&")}</b><br/>
