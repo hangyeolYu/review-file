@@ -1,0 +1,108 @@
+스프링 (Spring)
+
+- JSP (View)
++ Servlet (Service)
++ DAO (...Mgr) 개발
+-> 프레임워크화해서 만듦
+
+* 프레임워크: 기본적인 뼈대나 근간이 되는 코드 묶음
+(framework)
+
+vs library, api
+
+why?
+1) 기본적인 틀이 동일함 -> 협업/소통 좋음
+2) 미리 프로그램의 구조 (뼈대)를 정하고
+다른 팀원들이 해당 구조 안에서 코드 개발
+3) 기업 (결과물의 품질이 보장) + 개발자 (개발시간 단축)
+
+////////////////////////////////
+*spring == 가벼운 프레임 워크!
+1) 추가적인 하드웨어 구축이 필요없음
+2).jar (클래스 묶음)파일 이용해서 모든 개발이 가능하도록 만듬
+
+*POJO (Plain Old Java Object)
+1) 객체를 java파일로 만듬
+
+*IoC (Inversion of Control,제어의 역전 ) 컨테이너 기반
+1) 메소드/객체 호출을 개발자가 하지않고 외부에 결정
+
+원래 자바에서는
+"내가 사옹할 메소드 /객체 호출은 내가 만들어야헀음!"
+
+''''''Java
+class OwnerController{
+   private OwnerRepository repository
+    = new OwnerRepository();
+}
+
+스프링에서는
+"내가 사옹할 메소드 /객체 호출은 외부에서 만듬"
+(인자를 통해 전달 받는다!)
+
+class OwnerController {
+   private OwnerRepository repo;
+
+   public OwnerController(OwnerRepository repo) {
+       this.repo = repo;
+   }
+
+   // repo 사용
+}
+
+class OwnerControllerTest {
+   @Test
+   public void create() {
+         OwnerRepository repo = new OwnerRepository();
+         OwnerController controller = new OwnerController(repo);
+   }
+}
+
+-스프링에서는 IoC 컨테이너 (ApplicationContext)만듬
+-IoC 컨테이너 안에서는 빈(Bean)을 만들고 엮어주는(wiring) 역할
+-빈 설정 : 이름 (ID),type,Scope
+-빈 등록 : @Repository, @Service, @Controller....
+    or 자바 설정 파일 (.xml) 등록
+-빈 사용: @Autowired, @Inject
+   or ApplicationContext 직접 꺼냄 (getBean())
+
+*의존성 주입 (Dependency Injection,DI)
+
+public class Restaurant {
+   private Chef chef;
+
+   public void cook(){
+      this.chef = new Chef();
+   }
+}
+
+Restaurant r = new Restaurant();
+    r.cook();
+: 객체 r을 만들면 chef 객체도 내부에서 생성됨!
+=> 의존성 주입 x
+
+의존성 주입하는 방법? (why? 객체 재사용)
+1) 생성자 인자값 전달
+2) setter 를 통해 주입
+
+(쉽게 말해 메모리 낭비하지말고 안쓰는 객체 있으면 가져와서 재사용하장 ㅋ)
+
+의존성 주입을 하는 이유
+1) 객체 제사용 (메모리 효율적 관리)
+2) 객체와 객체를 분리해서 생성! -> 서로 연결! (wiring)
+
+public class Restaurant {
+    private Chef chef;
+
+public Restaurant (Chef chef) {
+    this.chef = chef;
+}
+
+public void setChef (Chef chef){
+this.chef = chef;
+}
+
+}
+
+
+
