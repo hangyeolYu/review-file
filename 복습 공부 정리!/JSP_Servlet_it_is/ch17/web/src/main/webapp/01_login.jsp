@@ -1,12 +1,16 @@
 <%@ page contentType="text/html; charset=EUC-KR"%>
 <%
 		String msg = (String)session.getAttribute("msg");
+		// PBlogLoginServlet 에서 로그인 실패시 저장한 메세지를 반환
+	// 세션 유지 용도
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="EUC-KR"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1"/>
+<%--	메타 태그는 애플이 만듬! 애플 브라우저 출력 화면 조절 용 --%>
 	<title>PhotoBlog</title>
 	<%@include file="js_css.html" %>
 	<script type="text/javascript">
@@ -42,6 +46,8 @@
                     <input type="button"  value="로그인" onclick="login()">
                 </form>
 	</div>
+
+<%--	로그인 실패시 메세지 출력!--%>
 	<%if(msg!=null){%>
 		<div align="center"><font color="red"><%=msg%></font></div>
 	<%}%>

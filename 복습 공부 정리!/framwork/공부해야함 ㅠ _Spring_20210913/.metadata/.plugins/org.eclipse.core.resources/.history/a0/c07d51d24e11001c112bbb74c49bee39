@@ -1,0 +1,5 @@
+package battery;
+
+public class NormalBattery {
+
+}

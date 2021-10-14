@@ -1,0 +1,8 @@
+package toy;
+
+// DI 방법 (1번)
+// 배터리 일체형 자동차
+// 배터리가 떨어지면 장난감을 새로 구입해야 함
+public class CarToy {
+
+}

@@ -1,0 +1,6 @@
+package ems.member.configuration;
+
+@Configuration
+public class MemberConfig {
+
+}

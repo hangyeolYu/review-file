@@ -1,0 +1,7 @@
+package toy;
+
+// DI 방법 (1번)
+// 배터리 일체형 자동차
+public class CarToy {
+
+}

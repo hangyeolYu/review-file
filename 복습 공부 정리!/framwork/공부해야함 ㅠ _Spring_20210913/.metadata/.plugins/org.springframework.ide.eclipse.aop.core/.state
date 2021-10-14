@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="ex09-ems-resource"/>
+<aop-project name="ex10-ems-inject"/>
+<aop-project name="ex07-scope"/>
+<aop-project name="ex14-wordsearch-inject"/>
+<aop-project name="ex13-wordsearch-resource"/>
+<aop-project name="ex15-ems-xml-to-java"/>
+<aop-project name="lec06Pjt002"/>
+<aop-project name="ex08-ems-autowired"/>
+<aop-project name="ex02"/>
+<aop-project name="ex12-wordsearch-autowired"/>
+<aop-project name="ex11-wordsearch-xml"/>
+<aop-project name="ex06-ems-xml"/>
+</aop-reference-model>

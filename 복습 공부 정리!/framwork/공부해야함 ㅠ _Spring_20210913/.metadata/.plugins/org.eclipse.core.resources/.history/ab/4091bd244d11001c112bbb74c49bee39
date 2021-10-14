@@ -1,0 +1,16 @@
+package toy;
+
+// 2번
+// 배터리 분리형 로봇 장난감
+// 장난감을 사면 기본으로 배터리를 제공하지 않음
+public class RobotToy {
+	
+	private Battery battery;
+	
+	public RobotToy() {}
+	
+	public void setBattery(Battery battery) {
+		this.battery = battery;
+	}
+
+}

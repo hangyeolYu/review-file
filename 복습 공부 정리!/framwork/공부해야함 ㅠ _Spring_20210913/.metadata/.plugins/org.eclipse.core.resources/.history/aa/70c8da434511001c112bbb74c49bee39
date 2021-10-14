@@ -1,0 +1,13 @@
+package main;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// 객체를 우리가 만들어서 사용!
+		HelloSpring h = new HelloSpring();
+		h.print();
+	}
+
+}

@@ -1,0 +1,36 @@
+<!-- 메이븐 설정 파일
+	필요한 라이브러리가 있으면 해당 라이브러리 연결
+	빌드할 때 사용
+ -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>spring3</groupId>
+  <artifactId>ex02</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- spring framework 설정 -->
+  <dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+	</dependencies>
+
+  <!-- 출력 내용 안에 한국어가 있을 경우 -->
+  <build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+</project>

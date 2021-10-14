@@ -1,0 +1,18 @@
+package toy;
+
+// 3번
+// 배터리 분리형 라디오 장난감
+// 장난감을 사면 배터리를 기본으로 넣어줌
+public class RadioToy {
+	private Battery battery;
+	
+	public RadioToy(Battery battery) {
+		this.battery = battery;
+	}
+	
+	// 네가 사서 알아서 장난감 구동시켜라!
+	// 의존 주입을 setter를 통해 함
+	public void setBattery(Battery battery) {
+		this.battery = battery;
+	}
+}

@@ -1,0 +1,20 @@
+package scope;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GenericXmlApplicationContext ctx = 
+				new GenericXmlApplicationContext("classpath:applicationContext.xml");
+		
+		InjectionBean injectionBean = 
+				ctx.getBean("injectionBean", InjectionBean.class);
+		
+		DependencyBean dependencyBean01 = 
+				ctx.getBean("dependencyBean", DependencyBean.class);
+		
+		DependencyBean dependencyBean02 = 
+				ctx.getBean("dependencyBean", DependencyBean.class);
+	}
+
+}

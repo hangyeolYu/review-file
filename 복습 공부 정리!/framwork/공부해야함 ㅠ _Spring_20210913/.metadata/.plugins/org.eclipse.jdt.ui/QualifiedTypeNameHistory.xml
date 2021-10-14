@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="operator.Calculator"/>
+    <fullyQualifiedTypeName name="battery.NormalBattery"/>
+    <fullyQualifiedTypeName name="battery.Battery"/>
+    <fullyQualifiedTypeName name="javax.annotation.Resource"/>
+    <fullyQualifiedTypeName name="org.springframework.context.support.GenericXmlApplicationContext"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
+    <fullyQualifiedTypeName name="javax.inject.Inject"/>
+    <fullyQualifiedTypeName name="javax.inject.Named"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Bean"/>
+    <fullyQualifiedTypeName name="ems.member.dao.StudentDao"/>
+    <fullyQualifiedTypeName name="ems.member.service.StudentRegisterService"/>
+    <fullyQualifiedTypeName name="ems.member.service.StudentModifyService"/>
+    <fullyQualifiedTypeName name="ems.member.service.StudentDeleteService"/>
+    <fullyQualifiedTypeName name="ems.member.service.StudentSelectService"/>
+    <fullyQualifiedTypeName name="ems.member.service.StudentAllSelectService"/>
+    <fullyQualifiedTypeName name="ems.member.DataBaseConnectionInfo"/>
+    <fullyQualifiedTypeName name="ems.member.service.EMSInformationService"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.AnnotationConfigApplicationContext"/>
+    <fullyQualifiedTypeName name="ems.member.configuration.MemberConfig"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="ems.member.configuration.MemberConfig1"/>
+    <fullyQualifiedTypeName name="ems.member.configuration.MemberConfig2"/>
+    <fullyQualifiedTypeName name="ems.member.configuration.MemberConfig3"/>
+    <fullyQualifiedTypeName name="org.springframework.context.annotation.Import"/>
+    <fullyQualifiedTypeName name="ems.member.configuration.MemberConfigImport"/>
+</qualifiedTypeNameHistroy>

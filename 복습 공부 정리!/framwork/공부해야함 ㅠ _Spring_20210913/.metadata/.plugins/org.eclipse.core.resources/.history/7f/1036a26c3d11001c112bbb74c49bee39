@@ -1,0 +1,16 @@
+package main;
+
+// IoC 컨테이너 역할
+public class MyCalculator {
+	public int left, right; 
+	// 객체
+	public Calculator calculator; 
+	// 객체 연결하는 작업 (+, -, *, /)
+	
+	public MyCalculator(int l, int r, Calculator c) {
+		this.left = l;
+		this.right = r;
+		this.calculator = c;
+		
+	}
+}

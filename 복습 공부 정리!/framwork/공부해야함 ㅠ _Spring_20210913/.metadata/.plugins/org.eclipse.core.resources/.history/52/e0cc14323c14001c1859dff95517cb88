@@ -1,0 +1,25 @@
+package ems.member.service;
+
+import java.util.Map;
+
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
+import ems.member.Student;
+import ems.member.dao.StudentDao;
+
+public class StudentAllSelectService {
+	private StudentDao studentDao;
+	
+	@Autowired
+	@Qualifier("dao")
+	public StudentAllSelectService(StudentDao studentDao) {
+		this.studentDao = studentDao;
+	}
+
+	public Map<String, Student> allSelect() {
+		return studentDao.getStudentDB();
+	}
+	
+}

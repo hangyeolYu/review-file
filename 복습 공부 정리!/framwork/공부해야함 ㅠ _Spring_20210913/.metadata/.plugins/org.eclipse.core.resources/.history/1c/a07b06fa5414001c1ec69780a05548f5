@@ -1,0 +1,9 @@
+package ems.member.configuration;
+
+import org.springframework.context.annotation.Configuration;
+
+// xml을 대신해서 자바 파일로 스프링 컨테이너 생성
+@Configuration
+public class MemberConfig {
+
+}

@@ -1,0 +1,21 @@
+package main;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// 객체를 우리가 만들어서 사용!
+		// DI 개념 X
+		// HelloSpring h = new HelloSpring();
+		// h.print();
+		
+		// 스프링 컨테이너 생성
+		GenericXmlApplicationContext ctx =
+				new GenericXmlApplicationContext
+				("applicationContext.xml");
+		
+		
+	}
+
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;ex09-ems-resource/autowired.txt&apos; to &apos;resource.txt&apos;" description="Rename resource &apos;autowired.txt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="autowired.txt" name="resource.txt" stamp="1631501717333" updateReferences="true"/>
+</session>

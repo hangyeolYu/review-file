@@ -1,0 +1,6 @@
+package main;
+
+// IoC 컨테이너 역할
+public class MyCalculator {
+	public int left, right;
+}

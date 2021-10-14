@@ -1,0 +1,30 @@
+package scope;
+
+import org.springframework.context.support.GenericXmlApplicationContext;
+
+public class MainClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		GenericXmlApplicationContext ctx = 
+				new GenericXmlApplicationContext("applicationContext.xml");
+	
+		InjectionBean iBean 
+		= ctx.getBean("injectionBean", InjectionBean.class);
+		
+		DependencyBean dBean1 
+		= ctx.getBean("dependencyBean", DependencyBean.class);
+		
+		DependencyBean dBean2 
+		= ctx.getBean("dependencyBean", DependencyBean.class);
+		
+		if(dBean1 == dBean2) {
+			System.out.println("dBean1 == dBean2");
+		}
+		else {
+			System.out.println("dBean1 == dBean2");
+		}
+	
+	}
+
+}

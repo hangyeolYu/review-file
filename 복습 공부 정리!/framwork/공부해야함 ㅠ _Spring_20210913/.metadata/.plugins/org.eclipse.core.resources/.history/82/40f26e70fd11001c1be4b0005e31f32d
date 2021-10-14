@@ -1,0 +1,10 @@
+package scope;
+
+public class DependencyBean {
+	InjectionBean injectionBean;
+	
+	// 생성자를 통해 주입
+	public
+	
+	// setter를 통해 주입
+}

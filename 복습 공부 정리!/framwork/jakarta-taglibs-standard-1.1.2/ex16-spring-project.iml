@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <libelement value="file://J:/GoottAcademy/web_Project_0808/ch07_spring/eunbin/jakarta-taglibs-standard-1.1.2/jakarta-taglibs-standard-1.1.2/lib/jstl.jar" />
+    <libelement value="file://J:/GoottAcademy/web_Project_0808/ch07_spring/eunbin/jakarta-taglibs-standard-1.1.2/jakarta-taglibs-standard-1.1.2/lib/standard.jar" />
+    <conelement value="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/../../ex16-spring-project/src/main/java" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/../../ex16-spring-project/src/main/resources" expected_position="1" />
+      <src_folder value="file://$MODULE_DIR$/../../ex16-spring-project/src/test/java" expected_position="2" />
+      <src_folder value="file://$MODULE_DIR$/../../ex16-spring-project/src/test/resources" expected_position="3" />
+      <src_folder value="file://$MODULE_DIR$/../../this_ex16-spring-project/src/main/java" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/../../this_ex16-spring-project/src/main/resources" expected_position="1" />
+      <src_folder value="file://$MODULE_DIR$/../../this_ex16-spring-project/src/test/java" expected_position="2" />
+      <src_folder value="file://$MODULE_DIR$/../../this_ex16-spring-project/src/test/resources" expected_position="3" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../this_ex16-spring-project/target/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../ex16-spring-project">
+      <sourceFolder url="file://$MODULE_DIR$/../../ex16-spring-project/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ex16-spring-project/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ex16-spring-project/src/test/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../ex16-spring-project/src/test/resources" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../this_ex16-spring-project">
+      <sourceFolder url="file://$MODULE_DIR$/../../this_ex16-spring-project/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../this_ex16-spring-project/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../this_ex16-spring-project/src/test/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../this_ex16-spring-project/src/test/resources" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="jdk" jdkName="JavaSE-1.6" jdkType="JavaSDK" />
+    <orderEntry type="library" name="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER" level="application" />
+  </component>
+</module>
